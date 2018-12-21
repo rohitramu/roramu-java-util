@@ -4,20 +4,18 @@
 
     <parent>
         <groupId>roramu.util</groupId>
-        <artifactId>roramu-util</artifactId>
-        <version>[0.0,999.0)</version>
+        <artifactId>all</artifactId>
+        <version>1.0</version>
     </parent>
 
-    <groupId>roramu.util.json</groupId>
-    <artifactId>roramu-util-json</artifactId>
-    <version>${buildVersion}</version>
+    <artifactId>json</artifactId>
 
     <dependencies>
         <!-- roramu.util -->
         <dependency>
-            <groupId>roramu.util.reflection</groupId>
-            <artifactId>roramu-util-reflection</artifactId>
-            <version>${buildVersion}</version>
+            <groupId>roramu.util</groupId>
+            <artifactId>reflection</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- Jackson (JSON) -->
