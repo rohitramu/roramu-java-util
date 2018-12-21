@@ -263,4 +263,11 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
-# End of https://www.gitignore.io/api/git,java,gradle,eclipse,netbeans,intellij,intellij+all,intellij+iml,maven
+### VisualStudioCode ###
+.vscode/*
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+# End of https://www.gitignore.io/api/git,java,gradle,eclipse,netbeans,intellij,intellij+all,intellij+iml,maven,VisualStudioCode

@@ -5,12 +5,12 @@
     <parent>
         <groupId>roramu.util</groupId>
         <artifactId>roramu-util</artifactId>
-        <version>1.0</version>
+        <version>[0.0,)</version>
     </parent>
 
     <groupId>roramu.util.exception</groupId>
     <artifactId>roramu-util-exception</artifactId>
-    <version>1.0</version>
+    <version>${buildVersion}</version>
 
     <dependencies>
     </dependencies>

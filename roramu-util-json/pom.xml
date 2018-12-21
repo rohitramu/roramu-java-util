@@ -5,19 +5,19 @@
     <parent>
         <groupId>roramu.util</groupId>
         <artifactId>roramu-util</artifactId>
-        <version>1.0</version>
+        <version>[0.0,)</version>
     </parent>
 
     <groupId>roramu.util.json</groupId>
     <artifactId>roramu-util-json</artifactId>
-    <version>1.0</version>
+    <version>${buildVersion}</version>
 
     <dependencies>
         <!-- roramu.util -->
         <dependency>
             <groupId>roramu.util.reflection</groupId>
             <artifactId>roramu-util-reflection</artifactId>
-            <version>1.0</version>
+            <version>${buildVersion}</version>
         </dependency>
 
         <!-- Jackson (JSON) -->

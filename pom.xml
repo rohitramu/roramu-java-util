@@ -2,13 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <groupId>roramu.util</groupId>
     <artifactId>roramu-util</artifactId>
-    <version>1.0</version>
+    <version>${buildVersion}</version>
     <packaging>pom</packaging>
     <modelVersion>4.0.0</modelVersion>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
+        <buildVersion>1.0</buildVersion>
     </properties>
 
     <modules>

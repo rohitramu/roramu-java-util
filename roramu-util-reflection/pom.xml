@@ -5,12 +5,12 @@
     <parent>
         <groupId>roramu.util</groupId>
         <artifactId>roramu-util</artifactId>
-        <version>1.0</version>
+        <version>[0.0,)</version>
     </parent>
 
     <groupId>roramu.util.reflection</groupId>
     <artifactId>roramu-util-reflection</artifactId>
-    <version>1.0</version>
+    <version>${buildVersion}</version>
 
     <dependencies>
         <!-- commons-io -->
