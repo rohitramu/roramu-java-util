@@ -9,8 +9,6 @@ println "Build version: $currentVersion"
 println "Gradle wrapper version: ${wrapper.gradleVersion}"
 
 allprojects {
-    apply plugin: 'maven'
-
     group = 'roramu.util'
     version = currentVersion
 }
@@ -19,10 +17,8 @@ subprojects {
     apply plugin: 'java-library'
     apply plugin: 'maven-publish'
 
-    repositories {
-        mavenLocal()
-        mavenCentral()
-    }
+    // Get external repositories from a separate file (to allow for CI automation to provide different values)
+    apply from: rootProject.file('repositories.gradle').absolutePath
 
     task sourcesJar(type: Jar) {
         from sourceSets.main.allJava
@@ -34,13 +30,6 @@ subprojects {
         classifier = 'javadoc'
     }
 
-    publishing {
-        publications {
-            mavenJava(MavenPublication) {
-                from components.java
-//                artifact sourcesJar
-                artifact javadocJar
-            }
-        }
-    }
+    // Get external publishing behavior from a separate file (to allow for CI automation to provide different values)
+    apply from: rootProject.file('publishing.gradle').absolutePath
 }

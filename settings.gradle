@@ -1,4 +1,4 @@
-rootProject.name = 'all'
+rootProject.name = 'root'
 
 Closure discoverSubprojects = {
     def list = []
