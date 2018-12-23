@@ -1,17 +1,46 @@
 wrapper.gradleVersion = '5.0'
 
+// Major.Minor build version - this should be considered the release version number, and should be incremented manually when required
+def buildVersion = '1.0'
+
+def currentVersion = "${buildVersion}.${rootProject.buildRevision}"
+
+println "Build version: $currentVersion"
+println "Gradle wrapper version: ${wrapper.gradleVersion}"
+
 allprojects {
     apply plugin: 'maven'
 
     group = 'roramu.util'
-    version = '1.0.0-SNAPSHOT'
+    version = currentVersion
 }
 
 subprojects {
     apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
 
     repositories {
         mavenLocal()
         mavenCentral()
+    }
+
+    task sourcesJar(type: Jar) {
+        from sourceSets.main.allJava
+        classifier = 'sources'
+    }
+
+    task javadocJar(type: Jar) {
+        from javadoc
+        classifier = 'javadoc'
+    }
+
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+//                artifact sourcesJar
+                artifact javadocJar
+            }
+        }
     }
 }

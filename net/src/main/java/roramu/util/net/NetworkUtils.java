@@ -64,7 +64,7 @@ public final class NetworkUtils {
      *
      * @param port The port number.
      * @param rejectWellKnownPorts Whether or not to also reject the port if it
-     * is in the range of well-known port numbers (i.e. if 0 <= port < 1024).
+     * is in the range of well-known port numbers (i.e. if {@literal 0 <= port < 1024}).
      * This is defaulted to false.
      */
     public static void validatePort(int port, boolean rejectWellKnownPorts) {
@@ -97,7 +97,7 @@ public final class NetworkUtils {
      *
      * @param port The port number.
      * @param rejectWellKnownPorts Whether or not to also reject the port if it
-     * is in the range of well-known port numbers (i.e. if 0 <= port < 1024).
+     * is in the range of well-known port numbers (i.e. if {@literal 0 <= port < 1024}).
      * This is defaulted to false.
      *
      * @return True if the port number is valid, otherwise false.

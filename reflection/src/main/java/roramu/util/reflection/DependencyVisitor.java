@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * ASM examples: Examples showing how ASM can be used.<br/> Copyright (c)
+ * ASM examples: Examples showing how ASM can be used.<br> Copyright (c)
  * 2000-2011 INRIA, France Telecom. All rights reserved.
  *
  * <p> Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@ import java.util.Set;
  * and/or other materials provided with the distribution. <li> Neither the name
  * of the copyright holders nor the names of its contributors may be used to
  * endorse or promote products derived from this software without specific prior
- * written permission. </ol> </p>
+ * written permission. </ol>
  *
  * <p> THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
@@ -42,7 +42,7 @@ import java.util.Set;
  * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE. </p>
+ * POSSIBILITY OF SUCH DAMAGE.
  *
  * @author Eugene Kuleshov
  */
