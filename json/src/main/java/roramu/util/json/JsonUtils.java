@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitorWrapper;
+import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.ser.std.StdScalarSerializer;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 import roramu.util.reflection.TypeInfo;
 
@@ -33,7 +33,12 @@ public final class JsonUtils {
      * @return The new ObjectMapper instance.
      */
     private static ObjectMapper getDefaultMapper() {
+        SimpleModule rawJsonStringSerializerModule = new SimpleModule("RawJsonString serializer");
+        rawJsonStringSerializerModule.addSerializer(RawJsonStringSerializer.instance);
+
         return new ObjectMapper()
+            .registerModule(rawJsonStringSerializerModule)
+
             .setSerializationInclusion(JsonInclude.Include.NON_EMPTY)
 
             .enable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
@@ -200,6 +205,43 @@ public final class JsonUtils {
             throw new IllegalArgumentException("Unexpected format: " + json, ex);
         } catch (IOException ex) {
             throw new UncheckedIOException("Failed to read message as JSON: " + json, ex);
+        }
+    }
+
+    /**
+     * Internal implementation of a serializer for {@see JsonString}.
+     */
+    private static final class RawJsonStringSerializer extends StdScalarSerializer<RawJsonString> {
+        private static final long serialVersionUID = 1L;
+
+        public final static RawJsonStringSerializer instance = new RawJsonStringSerializer();
+
+        public RawJsonStringSerializer() {
+            super(RawJsonString.class, false);
+        }
+
+        @Override
+        public boolean isEmpty(SerializerProvider prov, RawJsonString value) {
+            String str = value == null ? null : value.getValue();
+            return str.length() == 0;
+        }
+
+        @Override
+        public void serialize(RawJsonString value, JsonGenerator gen, SerializerProvider provider) throws IOException {
+            String str = value == null ? null : value.getValue();
+            gen.writeString(str);
+        }
+
+        @Override
+        public final void serializeWithType(RawJsonString value, JsonGenerator gen, SerializerProvider provider, TypeSerializer typeSer) throws IOException
+        {
+            String str = value == null ? null : value.getValue();
+            gen.writeString(str);
+        }
+
+        @Override
+        public void acceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws JsonMappingException {
+            visitStringFormat(visitor, typeHint);
         }
     }
 }
