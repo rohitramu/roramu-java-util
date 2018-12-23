@@ -1,4 +1,5 @@
 rootProject.name = 'all'
+
 Closure discoverSubprojects = {
     def list = []
     rootDir.eachDir(){ dir ->
