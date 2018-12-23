@@ -1,0 +1,4 @@
+dependencies {
+    implementation 'commons-io:commons-io:2.6'
+    implementation 'org.ow2.asm:asm:7.0'
+}

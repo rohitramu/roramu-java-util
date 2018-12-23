@@ -1,0 +1,17 @@
+wrapper.gradleVersion = '5.0'
+
+allprojects {
+    apply plugin: 'maven'
+
+    group = 'roramu.util'
+    version = '1.0.0-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: 'java-library'
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
