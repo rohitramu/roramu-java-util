@@ -6,10 +6,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.*;
-import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitorWrapper;
-import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
+import com.fasterxml.jackson.databind.deser.std.StdScalarDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.StdScalarSerializer;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
@@ -33,11 +34,8 @@ public final class JsonUtils {
      * @return The new ObjectMapper instance.
      */
     private static ObjectMapper getDefaultMapper() {
-        SimpleModule rawJsonStringSerializerModule = new SimpleModule("RawJsonString serializer");
-        rawJsonStringSerializerModule.addSerializer(RawJsonStringSerializer.instance);
-
         return new ObjectMapper()
-            .registerModule(rawJsonStringSerializerModule)
+            .registerModules(JsonUtils.getModules())
 
             .setSerializationInclusion(JsonInclude.Include.NON_EMPTY)
 
@@ -208,40 +206,49 @@ public final class JsonUtils {
         }
     }
 
+    private static Module[] getModules() {
+        SimpleModule rawJsonStringWriter = new SimpleModule(RawJsonString.class.getSimpleName() + " writer");
+        rawJsonStringWriter.addSerializer(RawJsonStringSerializer.instance);
+        rawJsonStringWriter.addDeserializer(RawJsonString.class, RawJsonStringDeserializer.instance);
+
+        return new Module[] {
+            rawJsonStringWriter,
+        };
+    }
+
     /**
-     * Internal implementation of a serializer for {@see JsonString}.
+     * Internal implementation of a serializer for {@link RawJsonString}.
      */
     private static final class RawJsonStringSerializer extends StdScalarSerializer<RawJsonString> {
-        private static final long serialVersionUID = 1L;
-
         public final static RawJsonStringSerializer instance = new RawJsonStringSerializer();
 
-        public RawJsonStringSerializer() {
+        private RawJsonStringSerializer() {
             super(RawJsonString.class, false);
         }
 
         @Override
-        public boolean isEmpty(SerializerProvider prov, RawJsonString value) {
-            String str = value == null ? null : value.getValue();
-            return str.length() == 0;
-        }
-
-        @Override
         public void serialize(RawJsonString value, JsonGenerator gen, SerializerProvider provider) throws IOException {
-            String str = value == null ? null : value.getValue();
-            gen.writeString(str);
+            if (value == null) {
+                gen.writeRawValue((String)null);
+            } else {
+                gen.writeRawValue(value.getValue());
+            }
+        }
+    }
+
+    /**
+     * Internal implementation of a deserializer for {@link RawJsonString}.
+     */
+    private static final class RawJsonStringDeserializer extends StdScalarDeserializer<RawJsonString> {
+        public final static RawJsonStringDeserializer instance = new RawJsonStringDeserializer();
+
+        private RawJsonStringDeserializer() {
+            super(RawJsonString.class);
         }
 
         @Override
-        public final void serializeWithType(RawJsonString value, JsonGenerator gen, SerializerProvider provider, TypeSerializer typeSer) throws IOException
-        {
-            String str = value == null ? null : value.getValue();
-            gen.writeString(str);
-        }
-
-        @Override
-        public void acceptJsonFormatVisitor(JsonFormatVisitorWrapper visitor, JavaType typeHint) throws JsonMappingException {
-            visitStringFormat(visitor, typeHint);
+        public RawJsonString deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            return new RawJsonString(p.getText());
         }
     }
 }

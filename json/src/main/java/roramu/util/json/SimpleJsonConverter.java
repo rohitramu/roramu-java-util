@@ -10,13 +10,17 @@ public class SimpleJsonConverter<T> implements JsonConverter<T> {
     }
 
     @Override
-    public String serialize(T obj) {
-        return JsonUtils.write(obj);
+    public RawJsonString serialize(T obj) {
+        return new RawJsonString(JsonUtils.write(obj));
     }
 
     @Override
-    public T deserialize(String json) {
-        return JsonUtils.read(json, this.getTypeInfo());
+    public T deserialize(RawJsonString json) {
+        if (json == null) {
+            throw new IllegalArgumentException("Raw JSON string parameter cannot be null");
+        }
+
+        return JsonUtils.read(json.getValue(), this.getTypeInfo());
     }
 
     /**

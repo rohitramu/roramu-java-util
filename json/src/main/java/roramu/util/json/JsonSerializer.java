@@ -14,5 +14,5 @@ public interface JsonSerializer<T> {
      *
      * @return The serialized JSON string.
      */
-    String serialize(T obj);
+    RawJsonString serialize(T obj);
 }
