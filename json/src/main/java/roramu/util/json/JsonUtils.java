@@ -227,11 +227,11 @@ public final class JsonUtils {
         }
 
         @Override
-        public void serialize(RawJsonString value, JsonGenerator gen, SerializerProvider provider) throws IOException {
-            if (value == null) {
-                gen.writeRawValue((String)null);
+        public void serialize(RawJsonString rawJsonStringObj, JsonGenerator gen, SerializerProvider provider) throws IOException {
+            if (rawJsonStringObj == null || rawJsonStringObj.getValue() == null) {
+                gen.writeRawValue("null");
             } else {
-                gen.writeRawValue(value.getValue());
+                gen.writeRawValue(rawJsonStringObj.getValue());
             }
         }
     }
