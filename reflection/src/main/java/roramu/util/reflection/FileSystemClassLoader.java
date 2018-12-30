@@ -48,7 +48,7 @@ public class FileSystemClassLoader extends URLClassLoader {
 
     private void init(Map<URL, byte[]> jars) {
         if (jars == null || jars.isEmpty()) {
-            throw new IllegalArgumentException("'jars' cannot be null or empty");
+            throw new NullPointerException("'jars' cannot be null or empty");
         }
 
         // Validate the URLs and JARs before attempting to write the JARs to the file system
@@ -63,13 +63,16 @@ public class FileSystemClassLoader extends URLClassLoader {
 
             // Check that it is pointing to a JAR file
             if (!FilenameUtils.getExtension(absolutePath.toString()).equalsIgnoreCase("jar")) {
-                throw new IllegalArgumentException("Found URL '" + url.toString() + "' which does not represent a JAR file. JAR files must have the extension '.jar'.");
+                throw new IllegalArgumentException("Found URL '" + url.toString() + "' which does not represent a JAR file - JAR files must have the extension '.jar'");
             }
 
             // Make sure the file itself is not null or empty
             byte[] jar = jars.get(url);
-            if (jar == null || jar.length <= 0) {
-                throw new IllegalArgumentException("Found JAR '" + url.toString() + "' which is a null or empty JAR file. JAR files cannot be empty.");
+            if (jar == null) {
+                throw new IllegalArgumentException("Found JAR '" + url.toString() + "' which is null");
+            }
+            if (jar.length <= 0) {
+                throw new IllegalArgumentException("Found JAR '" + url.toString() + "' which is an empty JAR file - JAR files cannot be empty");
             }
         }
 
@@ -84,7 +87,7 @@ public class FileSystemClassLoader extends URLClassLoader {
 
             // Create the file from the JAR using the URL
             try {
-                System.out.println("Writing JAR '" + absolutePath.toString() + "' to disk.");
+                System.out.println("Writing JAR '" + absolutePath.toString() + "' to disk");
 
                 // Make sure to overwrite the file if it exists
                 FileUtils.writeByteArrayToFile(absolutePath.toFile(), jars.get(url), false);

@@ -16,22 +16,22 @@ public class AdjacencyListDirectedGraph<V> implements IDirectedGraph<V> {
     @Override
     public void addEdge(String fromKey, String toKey) {
         if (fromKey == null) {
-            throw new NullPointerException("'fromKey' cannot be null.");
+            throw new NullPointerException("'fromKey' cannot be null");
         }
         if (toKey == null) {
-            throw new NullPointerException("'toKey' cannot be null.");
+            throw new NullPointerException("'toKey' cannot be null");
         }
 
         // Check that "from" node exists
         DirectedNode<V> fromVertex = this.graph.get(fromKey);
         if (fromVertex == null) {
-            throw new IllegalArgumentException("Node '" + fromKey + "' does not exist.");
+            throw new IllegalArgumentException("Node '" + fromKey + "' does not exist");
         }
 
         // Check that "to" node exists
         DirectedNode<V> toVertex = this.graph.get(toKey);
         if (toVertex == null) {
-            throw new IllegalArgumentException("Node '" + toKey + "' does not exist.");
+            throw new IllegalArgumentException("Node '" + toKey + "' does not exist");
         }
 
         // Make both the "from" and "to" nodes aware of the edge
@@ -42,7 +42,7 @@ public class AdjacencyListDirectedGraph<V> implements IDirectedGraph<V> {
     @Override
     public void addVertex(String key, V value) {
         if (key == null) {
-            throw new NullPointerException("'key' cannot be null.");
+            throw new NullPointerException("'key' cannot be null");
         }
 
         // Put the vertex in the graph
@@ -57,13 +57,13 @@ public class AdjacencyListDirectedGraph<V> implements IDirectedGraph<V> {
     @Override
     public Set<String> getNeighbors(String key) {
         if (key == null) {
-            throw new NullPointerException("'key' cannot be null.");
+            throw new NullPointerException("'key' cannot be null");
         }
 
         // Make sure vertex exists
         DirectedNode<V> vertex = this.graph.get(key);
         if (vertex == null) {
-            throw new IllegalArgumentException("Vertex '" + key + "' does not exist.");
+            throw new IllegalArgumentException("Vertex '" + key + "' does not exist");
         }
 
         return Collections.unmodifiableSet(vertex.getNeighbors());
@@ -72,13 +72,13 @@ public class AdjacencyListDirectedGraph<V> implements IDirectedGraph<V> {
     @Override
     public Set<String> getReverseNeighbours(String key) {
         if (key == null) {
-            throw new NullPointerException("'key' cannot be null.");
+            throw new NullPointerException("'key' cannot be null");
         }
 
         // Make sure vertex exists
         DirectedNode<V> vertex = this.graph.get(key);
         if (vertex == null) {
-            throw new IllegalArgumentException("Vertex '" + key + "' does not exist.");
+            throw new IllegalArgumentException("Vertex '" + key + "' does not exist");
         }
 
         return Collections.unmodifiableSet(vertex.getReverseNeighbors());
@@ -92,13 +92,13 @@ public class AdjacencyListDirectedGraph<V> implements IDirectedGraph<V> {
     @Override
     public V getVertexValue(String key) {
         if (key == null) {
-            throw new NullPointerException("'key' cannot be null.");
+            throw new NullPointerException("'key' cannot be null");
         }
 
         // Make sure vertex exists
         DirectedNode<V> vertex = this.graph.get(key);
         if (vertex == null) {
-            throw new IllegalArgumentException("Vertex '" + key + "' does not exist.");
+            throw new IllegalArgumentException("Vertex '" + key + "' does not exist");
         }
 
         return vertex.getValue();
@@ -107,13 +107,13 @@ public class AdjacencyListDirectedGraph<V> implements IDirectedGraph<V> {
     @Override
     public void setVertexValue(String key, V value) {
         if (key == null) {
-            throw new NullPointerException("'key' cannot be null.");
+            throw new NullPointerException("'key' cannot be null");
         }
 
         // Make sure vertex exists
         DirectedNode<V> vertex = this.graph.get(key);
         if (vertex == null) {
-            throw new IllegalArgumentException("Vertex '" + key + "' does not exist.");
+            throw new IllegalArgumentException("Vertex '" + key + "' does not exist");
         }
 
         vertex.setValue(value);
@@ -122,16 +122,16 @@ public class AdjacencyListDirectedGraph<V> implements IDirectedGraph<V> {
     @Override
     public boolean isConnected(String fromKey, String toKey) {
         if (fromKey == null) {
-            throw new NullPointerException("'fromKey' cannot be null.");
+            throw new NullPointerException("'fromKey' cannot be null");
         }
         if (toKey == null) {
-            throw new NullPointerException("'toKey' cannot be null.");
+            throw new NullPointerException("'toKey' cannot be null");
         }
 
         // Make sure vertex exists
         DirectedNode<V> fromVertex = this.graph.get(fromKey);
         if (fromVertex == null) {
-            throw new IllegalArgumentException("Vertex '" + fromKey + "' does not exist.");
+            throw new IllegalArgumentException("Vertex '" + fromKey + "' does not exist");
         }
 
         return fromVertex.isConnectedTo(toKey);
@@ -140,20 +140,20 @@ public class AdjacencyListDirectedGraph<V> implements IDirectedGraph<V> {
     @Override
     public void removeEdge(String fromKey, String toKey) {
         if (fromKey == null) {
-            throw new NullPointerException("'fromKey' cannot be null.");
+            throw new NullPointerException("'fromKey' cannot be null");
         }
         if (toKey == null) {
-            throw new NullPointerException("'toKey' cannot be null.");
+            throw new NullPointerException("'toKey' cannot be null");
         }
 
         // Make sure vertices exist
         DirectedNode<V> fromVertex = this.graph.get(fromKey);
         if (fromVertex == null) {
-            throw new IllegalArgumentException("Vertex '" + fromKey + "' does not exist.");
+            throw new IllegalArgumentException("Vertex '" + fromKey + "' does not exist");
         }
         DirectedNode<V> toVertex = this.graph.get(toKey);
         if (toVertex == null) {
-            throw new IllegalArgumentException("Vertex '" + toKey + "' does not exist.");
+            throw new IllegalArgumentException("Vertex '" + toKey + "' does not exist");
         }
 
         // Make both the "from" and "to" nodes aware of the removed edge
@@ -164,13 +164,13 @@ public class AdjacencyListDirectedGraph<V> implements IDirectedGraph<V> {
     @Override
     public void removeVertex(String key) {
         if (key == null) {
-            throw new NullPointerException("'key' cannot be null.");
+            throw new NullPointerException("'key' cannot be null");
         }
 
         // Make sure vertex exists
         DirectedNode<V> vertex = this.graph.get(key);
         if (vertex == null) {
-            throw new IllegalArgumentException("Vertex '" + key + "' does not exist.");
+            throw new IllegalArgumentException("Vertex '" + key + "' does not exist");
         }
 
         // Remove edges to/from neighbors

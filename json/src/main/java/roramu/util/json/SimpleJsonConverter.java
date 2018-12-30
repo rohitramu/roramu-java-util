@@ -17,7 +17,7 @@ public class SimpleJsonConverter<T> implements JsonConverter<T> {
     @Override
     public T deserialize(RawJsonString json) {
         if (json == null) {
-            throw new IllegalArgumentException("Raw JSON string parameter cannot be null");
+            throw new NullPointerException("Raw JSON string parameter cannot be null");
         }
 
         return JsonUtils.read(json.getValue(), this.getTypeInfo());

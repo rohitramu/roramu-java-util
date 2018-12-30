@@ -39,28 +39,28 @@ class DirectedWeightedNode<V, E> {
 
     public void addOrSetEdgeTo(String key, E edgeWeight) {
         if (key == null) {
-            throw new NullPointerException("'key' cannot be null.");
+            throw new NullPointerException("'key' cannot be null");
         }
         connectsTo.put(key, edgeWeight);
     }
 
     public void removeEdgeTo(String key) {
         if (key == null) {
-            throw new NullPointerException("'key' cannot be null.");
+            throw new NullPointerException("'key' cannot be null");
         }
         connectsTo.remove(key);
     }
 
     public void addOrSetEdgeFrom(String key, E edgeWeight) {
         if (key == null) {
-            throw new NullPointerException("'key' cannot be null.");
+            throw new NullPointerException("'key' cannot be null");
         }
         connectsFrom.put(key, edgeWeight);
     }
 
     public void removeEdgeFrom(String key) {
         if (key == null) {
-            throw new NullPointerException("'key' cannot be null.");
+            throw new NullPointerException("'key' cannot be null");
         }
         connectsFrom.remove(key);
     }
@@ -75,28 +75,28 @@ class DirectedWeightedNode<V, E> {
 
     public E getEdgeTo(String key) {
         if (key == null) {
-            throw new NullPointerException("'key' cannot be null.");
+            throw new NullPointerException("'key' cannot be null");
         }
         return connectsTo.get(key);
     }
 
     public E getEdgeFrom(String key) {
         if (key == null) {
-            throw new NullPointerException("'key' cannot be null.");
+            throw new NullPointerException("'key' cannot be null");
         }
         return connectsFrom.get(key);
     }
 
     public boolean isConnectedTo(String key) {
         if (key == null) {
-            throw new NullPointerException("'key' cannot be null.");
+            throw new NullPointerException("'key' cannot be null");
         }
         return connectsTo.containsKey(key);
     }
 
     public boolean isConnectedFrom(String key) {
         if (key == null) {
-            throw new NullPointerException("'key' cannot be null.");
+            throw new NullPointerException("'key' cannot be null");
         }
         return connectsFrom.containsKey(key);
     }
