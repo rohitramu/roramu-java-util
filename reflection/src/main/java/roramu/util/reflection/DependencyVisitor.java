@@ -131,11 +131,11 @@ public class DependencyVisitor extends ClassVisitor {
 
     private String getGroupKey(String name) {
         // NOTE: The following block was the original code
-//        int n = name.lastIndexOf('/');
-//        if (n > -1) {
-//            name = name.substring(0, n);
-//        }
-//        packages.add(name);
+        //        int n = name.lastIndexOf('/');
+        //        if (n > -1) {
+        //            name = name.substring(0, n);
+        //        }
+        //        packages.add(name);
 
         // Replace resource char with package separator char
         name = name.replace('/', '.');

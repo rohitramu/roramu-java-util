@@ -13,7 +13,6 @@ public interface IGraph<V> {
      * Checks whether the graph contains a specified vertex.
      *
      * @param key The key which identifies the vertex.
-     *
      * @return True if the vertex is in the graph, otherwise false.
      */
     boolean containsVertex(String key);
@@ -66,7 +65,6 @@ public interface IGraph<V> {
      * Gets the value of a vertex.
      *
      * @param key The key that identifies the vertex to get the value for.
-     *
      * @return The value of the given vertex.
      */
     V getVertexValue(String key);
@@ -89,7 +87,6 @@ public interface IGraph<V> {
      * start from.
      * @param toKey The key which identifies the vertex that the edge might end
      * at.
-     *
      * @return True if the two vertices are connected by an edge.
      */
     boolean isConnected(String fromKey, String toKey);
@@ -100,7 +97,6 @@ public interface IGraph<V> {
      * {@link Collections#unmodifiableSet(java.util.Set)})
      *
      * @param key The key which identifies the vertex to get neighbors for.
-     *
      * @return The keys that identify the given vertex's neighboring vertices.
      */
     Set<String> getNeighbors(String key);

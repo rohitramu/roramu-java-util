@@ -15,7 +15,6 @@ public interface IDirectedGraph<V> extends IGraph<V> {
      *
      * @param key The key which identifies the vertex to get the reverse
      * neighbors for.
-     *
      * @return The keys that identify the given vertex's reverse neighbors.
      */
     Set<String> getReverseNeighbours(String key);

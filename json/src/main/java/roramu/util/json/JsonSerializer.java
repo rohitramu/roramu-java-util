@@ -11,7 +11,6 @@ public interface JsonSerializer<T> {
      * Serializes the given object into a JSON string.
      *
      * @param obj The object to serialize.
-     *
      * @return The serialized JSON string.
      */
     RawJsonString serialize(T obj);

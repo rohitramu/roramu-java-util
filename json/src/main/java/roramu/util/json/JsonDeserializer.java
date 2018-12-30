@@ -11,7 +11,6 @@ public interface JsonDeserializer<T> {
      * Deserializes a JSON string into an object.
      *
      * @param json The JSON string.
-     *
      * @return The deserialized object.
      */
     T deserialize(RawJsonString json);

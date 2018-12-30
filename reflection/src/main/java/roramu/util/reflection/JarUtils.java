@@ -26,8 +26,8 @@ public final class JarUtils {
     private static final String[] excludedPackages = {
         "java.",
         "javax.",
-//        "sun.",
-//        "com.sun."
+        // "sun.",
+        // "com.sun."
     };
     public static final Predicate<String> defaultFilter = excludePackagesFilter(excludedPackages);
 
@@ -58,9 +58,7 @@ public final class JarUtils {
      * default values for excluded prefixes.
      *
      * @param theClass The class.
-     *
      * @return The JAR that the class was loaded from.
-     *
      * @throws IOException If a ClassReader could not be created for the given
      * class.
      * @throws ClassNotFoundException If the class could not be found.
@@ -78,9 +76,7 @@ public final class JarUtils {
      * otherwise returns false.
      * @param ignoreMissingClasses Whether or not to swallow the exception if a
      * dependency could not be located.
-     *
      * @return The JAR that the class was loaded from.
-     *
      * @throws IOException If a ClassReader could not be created for the given
      * class.
      * @throws ClassNotFoundException If the class could not be found.
@@ -117,7 +113,8 @@ public final class JarUtils {
         for (Class<?> aClass : classes) {
             manifest.getEntries().put(
                 aClass.getName().replace('.', '/') + ".class",
-                new Attributes());
+                new Attributes()
+            );
         }
 
         // Create the virtual (in-memory) JAR file
@@ -141,9 +138,9 @@ public final class JarUtils {
         byte[] result = byteStream.toByteArray();
 
         // Write to file for testing
-//        File tempFile = File.createTempFile(theClass.getName(), ".jar");
-//        FileUtils.writeByteArrayToFile(tempFile, result);
-//        System.out.println(tempFile.getAbsolutePath());
+        // File tempFile = File.createTempFile(theClass.getName(), ".jar");
+        // FileUtils.writeByteArrayToFile(tempFile, result);
+        // System.out.println(tempFile.getAbsolutePath());
 
         return result;
     }

@@ -100,23 +100,23 @@ public class FileSystemClassLoader extends URLClassLoader {
         }
     }
 
-//    @Override
-//    public Class<?> loadClass(String name) throws ClassNotFoundException {
-//        Class<?> result = this.findLoadedClass(name);
-//        
-//        if (result == null) {
-//            try {
-//                result = this.findClass(name);
-//            } catch (ClassNotFoundException ex) {
-//                ClassLoader parent = this.getParent();
-//                if (parent == null) {
-//                    throw ex;
-//                }
-//                
-//                result = parent.loadClass(name);
-//            }
-//        }
-//        
-//        return result;
-//    }
+    // @Override
+    // public Class<?> loadClass(String name) throws ClassNotFoundException {
+    //    Class<?> result = this.findLoadedClass(name);
+    //
+    //    if (result == null) {
+    //        try {
+    //            result = this.findClass(name);
+    //        } catch (ClassNotFoundException ex) {
+    //            ClassLoader parent = this.getParent();
+    //            if (parent == null) {
+    //                throw ex;
+    //            }
+    //
+    //            result = parent.loadClass(name);
+    //        }
+    //    }
+    //
+    //    return result;
+    // }
 }

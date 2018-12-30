@@ -8,8 +8,15 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.Module;
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.deser.std.StdScalarDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.ser.std.StdScalarSerializer;
@@ -80,7 +87,6 @@ public final class JsonUtils {
      * and fields.
      *
      * @param obj The object.
-     *
      * @return The serialized JSON string.
      */
     public static final String write(Object obj) {
@@ -92,7 +98,6 @@ public final class JsonUtils {
      *
      * @param obj The object.
      * @param prettyPrint Whether to pretty-print the JSON string.
-     *
      * @return The serialized JSON string.
      */
     public static final String write(Object obj, boolean prettyPrint) {
@@ -110,9 +115,7 @@ public final class JsonUtils {
      * @param mapper The mapper object which will be used to write the JSON
      * string.
      * @param obj The object.
-     *
      * @return The serialized JSON string.
-     *
      * @throws UncheckedIOException If there was any failure while writing the
      * JSON string.
      */
@@ -134,9 +137,7 @@ public final class JsonUtils {
      * @param <T> The type to convert the JSON into.
      * @param json The JSON string.
      * @param typeInfo The reference to the type to convert the JSON into.
-     *
      * @return The deserialized Java object.
-     *
      * @throws IllegalArgumentException If the provided string is not a valid
      * JSON string.
      * @throws UncheckedIOException If there was any other failure while reading
@@ -157,9 +158,7 @@ public final class JsonUtils {
      * @param <T> The type to convert the JSON into.
      * @param json The JSON string.
      * @param type The type to convert the JSON into.
-     *
      * @return The deserialized Java object.
-     *
      * @throws IllegalArgumentException If the provided string is not a valid
      * JSON string.
      * @throws UncheckedIOException If there was any other failure while reading
@@ -182,9 +181,7 @@ public final class JsonUtils {
      * string.
      * @param json The JSON string.
      * @param javaType The type to deserialize the JSON string into.
-     *
      * @return The deserialized Java object.
-     *
      * @throws IllegalArgumentException If the provided string is not a valid
      * JSON string.
      * @throws UncheckedIOException If there was any other failure while reading

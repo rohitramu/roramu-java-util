@@ -28,7 +28,6 @@ class DirectedWeightedNode<V, E> {
      * Sets the value.
      *
      * @param newValue The value to set.
-     *
      * @return The old value.
      */
     public V setValue(V newValue) {

@@ -15,7 +15,6 @@ public final class AsyncUtils {
      *
      * @param future The future.
      * @param <T> The return type of the {@link Future}.
-     *
      * @return The created {@link CompletableFuture}.
      */
     public static <T> CompletableFuture<T> ToCompletableFuture(Future<T> future) {
@@ -37,7 +36,6 @@ public final class AsyncUtils {
      *
      * @param task The task to run. If this is null, the created CompletedFuture
      * will return null.
-     *
      * @return The reference to the task.
      */
     public static CompletableFuture<Void> startTask(Runnable task) {
@@ -54,7 +52,6 @@ public final class AsyncUtils {
      * will return null.
      * @param <T> The result type. Use {@link Void} if the task does not return
      * a result.
-     *
      * @return The reference to the task.
      */
     public static <T> CompletableFuture<T> startTask(Supplier<T> task) {

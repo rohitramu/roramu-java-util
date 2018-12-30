@@ -84,7 +84,6 @@ public final class NetworkUtils {
      * negative or greater than 65535.
      *
      * @param port The port number.
-     *
      * @return True if the port number is valid, otherwise false.
      */
     public static boolean isValidPort(int port) {
@@ -99,7 +98,6 @@ public final class NetworkUtils {
      * @param rejectWellKnownPorts Whether or not to also reject the port if it
      * is in the range of well-known port numbers (i.e. if {@literal 0 <= port < 1024}).
      * This is defaulted to false.
-     *
      * @return True if the port number is valid, otherwise false.
      */
     public static boolean isValidPort(int port, boolean rejectWellKnownPorts) {

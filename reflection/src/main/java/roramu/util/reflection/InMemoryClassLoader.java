@@ -20,25 +20,25 @@ public class InMemoryClassLoader extends ClassLoader {
         this.jars = jars;
     }
 
-//    @Override
-//    public Class<?> loadClass(String name) throws ClassNotFoundException {
-//        Class<?> result = this.findLoadedClass(name);
-//        
-//        if (result == null) {
-//            try {
-//                result = this.findClass(name);
-//            } catch (ClassNotFoundException ex) {
-//                ClassLoader parent = this.getParent();
-//                if (parent == null) {
-//                    throw ex;
-//                }
-//                
-//                result = parent.loadClass(name);
-//            }
-//        }
-//        
-//        return result;
-//    }
+    // @Override
+    // public Class<?> loadClass(String name) throws ClassNotFoundException {
+    //    Class<?> result = this.findLoadedClass(name);
+    //
+    //    if (result == null) {
+    //        try {
+    //            result = this.findClass(name);
+    //        } catch (ClassNotFoundException ex) {
+    //            ClassLoader parent = this.getParent();
+    //            if (parent == null) {
+    //                throw ex;
+    //            }
+    //
+    //            result = parent.loadClass(name);
+    //        }
+    //    }
+    //
+    //    return result;
+    // }
 
     @Override
     public Class<?> findClass(String name) throws ClassNotFoundException {
@@ -64,7 +64,6 @@ public class InMemoryClassLoader extends ClassLoader {
                 }
             }
         }
-
 
         if (result == null) {
             // We couldn't find the class, so throw an exception
