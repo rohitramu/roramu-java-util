@@ -4,6 +4,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 /**
@@ -69,10 +70,26 @@ public final class AsyncUtils {
      * @param timeoutUnits The timeout units.
      */
     public static void sleep(long timeout, TimeUnit timeoutUnits) {
+        sleep(timeout, timeoutUnits, null);
+    }
+
+    /**
+     * Sleeps for the given amount of time.
+     *
+     * @param timeout The length of time to sleep.
+     * @param timeoutUnits The timeout units.
+     * @param interruptedExceptionHandler A method for handling an {@link InterruptedException};
+     */
+    public static void sleep(long timeout, TimeUnit timeoutUnits, Consumer<InterruptedException> interruptedExceptionHandler) {
         try {
             timeoutUnits.sleep(timeout);
         } catch (InterruptedException ex) {
-            throw new RuntimeException("Thread was interrupted while sleeping", ex);
+            if (interruptedExceptionHandler != null) {
+                interruptedExceptionHandler.accept(ex);
+            } else {
+                // Fallback exception handler
+                throw new RuntimeException("Thread was interrupted while sleeping", ex);
+            }
         }
     }
 }
